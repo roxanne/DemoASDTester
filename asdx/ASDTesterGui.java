@@ -175,108 +175,107 @@ static {
       hMenu.setMnemonic(KeyEvent.VK_H);
       menuBar.add(hMenu);
 
-      //1. Input/Open/Load the grammar files and init parse
-      JToolBar toolbar = new JToolBar();//create toolbar for all icons
-      add(toolbar, BorderLayout.NORTH);
-      JButton newGrammarFileButton = null;
-          
-      newGrammarFileButton = new JButton(
-         new ImageIcon(getClass().getClassLoader().getResource("resources/open.gif")));
+         //1. Input/Open/Load the grammar files and init parse
+         JToolBar toolbar = new JToolBar();//create toolbar for all icons
+         add(toolbar, BorderLayout.NORTH);
+         JButton newGrammarFileButton = null;
 
-      newGrammarFileButton.setToolTipText("Use the grammar file name text field \n"
-          + " key in the URL http://www.asd-networks.com/grammars/npX.grm");
-          toolbar.add(newGrammarFileButton);
-          // toolbar.addSeparator();
-          newGrammarFileButton.addActionListener(new ActionListener() {
+         newGrammarFileButton = new JButton(
+                 new ImageIcon(getClass().getClassLoader().getResource("resources/open.gif")));
 
-          public void actionPerformed(ActionEvent event) {
-              //initializeParse();  
-               tester.initializeParse();
+         newGrammarFileButton.setToolTipText("Use the grammar file name text field \n"
+                 + " key in the URL http://www.asdnetworks.com/grammars/npX.grm");
+         toolbar.add(newGrammarFileButton);
+         // toolbar.addSeparator();
+         newGrammarFileButton.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent event) {
+                 //initializeParse();
+                 tester.initializeParse();
              }
          });
-     
-      //2
-      JButton initializeParseButton = null;
 
-      initializeParseButton = new JButton(new ImageIcon(
-         getClass().getClassLoader().getResource("resources/new.gif")));
-      
-      initializeParseButton.setToolTipText("Initialize new parse/use the ENTER KEY");
-      toolbar.add(initializeParseButton);
+         //2. Key-in the new parse and initialize
+         JButton initializeParseButton = null;
 
-      initializeParseButton.addActionListener(new ActionListener() {
+         initializeParseButton = new JButton(new ImageIcon(
+                 getClass().getClassLoader().getResource("resources/new.gif")));
 
-          public void actionPerformed(ActionEvent event) {
-              //initializeParse();      
-              tester.initializeParse();
-          }
-      });
-      // 3. advance parse one step
-      JButton stepParseButton = null;
+         initializeParseButton.setToolTipText("Initialize new parse/use the ENTER KEY");
+         toolbar.add(initializeParseButton);
+         toolbar.addSeparator();
+         initializeParseButton.addActionListener(new ActionListener() {
 
-          stepParseButton = new JButton(new ImageIcon(
-             getClass().getClassLoader().getResource("resources/step.png")));
-          // Step parse 
+             public void actionPerformed(ActionEvent event) {
+                 //initializeParse();
+                 tester.initializeParse();
+             }
+         });
 
-          //JButton completeParseButton = new JButton(new ImageIcon("images/allRemaining.png"));//uses parse.png icon
-          stepParseButton.setToolTipText("advance parse one (1) step");
-          toolbar.add(stepParseButton);
+         // 3. advance parse one step
+         JButton stepParseButton = null;
 
-          stepParseButton.addActionListener(new ActionListener() {
+         stepParseButton = new JButton(new ImageIcon(
+                 getClass().getClassLoader().getResource("resources/step.png")));
+         // Step parse
 
-              public void actionPerformed(ActionEvent event) {
+
+         stepParseButton.setToolTipText("advance parse one (1) step");
+         toolbar.add(stepParseButton);
+
+         stepParseButton.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent event) {
                  // evaluator.completeParse();
-                   tester.advance();
-              }
-          });
-
-          /////////////////////////////////////////////////////////////////////////////////////////////////
-          // 4. ICON  Complete Parse 
-          JButton completeParseButton = null;
-
-          completeParseButton = new JButton(new ImageIcon(
-                  getClass().getClassLoader().getResource("resources/parse.png")));
+                 tester.advance();
+             }
+         });
 
 
-          //JButton completeParseButton = new JButton(new ImageIcon("images/allRemaining.png"));//uses parse.png icon
-          completeParseButton.setToolTipText("Complete the present parse");
-          toolbar.add(completeParseButton);
+         // 4. Complete Parse
+         JButton completeParseButton = null;
 
-          completeParseButton.addActionListener(new ActionListener() {
+         completeParseButton = new JButton(new ImageIcon(
+                 getClass().getClassLoader().getResource("resources/parse.png")));
 
-              public void actionPerformed(ActionEvent event) {
+         completeParseButton.setToolTipText("Complete the present parse");
+         toolbar.add(completeParseButton);
+
+         completeParseButton.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent event) {
                  // evaluator.completeParse();
-                   tester.completeParse();
-              }
-          });
-         
+                 tester.completeParse();
+             }
+         });
 
-          // 5. ICON Show Phrase Tree Structure with listener
+         // 5. Show Phrase Tree Structure with listener
+
+         JButton showPhraseButton = null;
+         showPhraseButton = new JButton(new ImageIcon(
+                 getClass().getClassLoader().getResource("resources/blue-side-tree.png")));
+
+         // JButton showPhraseButton = new JButton(new ImageIcon("images/blue-side-tree.png"));    //uses icon
+         showPhraseButton.setToolTipText("Show parse tree phrase structure");
+         toolbar.add(showPhraseButton);
+
+         showPhraseButton.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent event) {
+                 //showBracketedPhrase();
+                 tester.showPhraseStructure();
+             }
+         });
           
-          JButton showPhraseButton = null;
-          showPhraseButton = new JButton(new ImageIcon(
-             getClass().getClassLoader().getResource("resources/blue-side-tree.png")));
-
-          // JButton showPhraseButton = new JButton(new ImageIcon("images/blue-side-tree.png"));    //uses icon
-          showPhraseButton.setToolTipText("Show parse tree phrase structure");
-          toolbar.add(showPhraseButton);
-
-          showPhraseButton.addActionListener(new ActionListener() {
-
-              public void actionPerformed(ActionEvent event) {
-                  //showBracketedPhrase();
-                  tester.showPhraseStructure();
-              }
-          });
-          
-       // 7.  Complete and Evaluate Expression
+         // 6.  Show bracketed form
           JButton showBracketedButton = null;
-          showBracketedButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/report_word.png")));
+          showBracketedButton = new JButton(new ImageIcon(
+                  getClass().getClassLoader().getResource("resources/report_word.png")));
 
           //  JButton showTreeButton = new JButton(new ImageIcon("images/sideparse.png")); // uses  icon
           showBracketedButton.setToolTipText("Display parse in bracketed format");
           toolbar.add(showBracketedButton);
-          //toolbar.addSeparator();
+          toolbar.addSeparator();
           showBracketedButton.addActionListener(new ActionListener() {
 
               public void actionPerformed(ActionEvent event) {
@@ -285,29 +284,27 @@ static {
                   tester.showBracketedPhrase();
               }
           });
-          
-           /////////////////////////////////////////////////////////////////////////////////////////////////
-          // 6.  Complete All Parses
+
+         // 7.  Complete All Parses
           JButton allParsesButton = null;
-          //JButton showTreeButton = new JButton(new ImageIcon("images.sideparse.png"));    // uses  icon
-          //(new ImageIcon(this.getClass().getClassLoader().getResource("images/open.gif")));
+
+
           allParsesButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/sideparse.png")));
 
-          //  JButton showTreeButton = new JButton(new ImageIcon("images/sideparse.png")); // uses  icon
+         //  JButton showTreeButton = new JButton(new ImageIcon("images/sideparse.png")); // uses  icon
           allParsesButton.setToolTipText("Complete all parses ");
           toolbar.add(allParsesButton);
           toolbar.addSeparator();
           allParsesButton.addActionListener(new ActionListener() {
 
-              public void actionPerformed(ActionEvent event) {
-                  // showPhraseStructure();
-                  //evaluator.showSemanticValue();
-                  tester.allParses();
-              }
-          });
+             public void actionPerformed(ActionEvent event) {
+                 // showPhraseStructure();
+                 //evaluator.showSemanticValue();
+                 tester.allParses();
+             }
+         });
           
-          
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
           // 8.  Select All output text area //   
 
           JButton copyButton = null;
@@ -326,7 +323,7 @@ static {
               }
           });
         
-        // 9 Erase / Clear  Select output text area
+          // 9 Erase / Clear  Select output text area
 
           JButton cutEraseButton = null;
 
@@ -361,24 +358,24 @@ static {
                     
               }
           });
-          
-        // 12 EXIT
 
-          JButton exitButton = null;
-          // JButton exitButton = new JButton(new ImageIcon("images/delete.gif"));    // uses  icon
-          //(new ImageIcon(this.getClass().getClassLoader().getResource("images/open.gif")));
-          exitButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/delete.gif")));
+         // 11 EXIT
 
-          // JButton exitButton = new JButton(new ImageIcon("images/delete.gif"));    // uses  icon
-          exitButton.setToolTipText("Close application ");
-          toolbar.add(exitButton);
-          //toolbar.addSeparator();
-          exitButton.addActionListener(new ActionListener() {
+         JButton exitButton = null;
+         // JButton exitButton = new JButton(new ImageIcon("images/delete.gif"));    // uses  icon
+         //(new ImageIcon(this.getClass().getClassLoader().getResource("images/open.gif")));
+         exitButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("resources/delete.gif")));
 
-              public void actionPerformed(ActionEvent event) {
-                  System.exit(0);
-              }
-          });
+         // JButton exitButton = new JButton(new ImageIcon("images/delete.gif"));    // uses  icon
+         exitButton.setToolTipText("Close application ");
+         toolbar.add(exitButton);
+         //toolbar.addSeparator();
+         exitButton.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent event) {
+                 System.exit(0);
+             }
+         });
 
           
          
