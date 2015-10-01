@@ -222,7 +222,7 @@ static {
 
          stepParseButton.setToolTipText("advance parse one (1) step");
          toolbar.add(stepParseButton);
-
+         toolbar.addSeparator();
          stepParseButton.addActionListener(new ActionListener() {
 
              public void actionPerformed(ActionEvent event) {
@@ -258,7 +258,7 @@ static {
          // JButton showPhraseButton = new JButton(new ImageIcon("images/blue-side-tree.png"));    //uses icon
          showPhraseButton.setToolTipText("Show parse tree phrase structure");
          toolbar.add(showPhraseButton);
-
+         toolbar.addSeparator();
          showPhraseButton.addActionListener(new ActionListener() {
 
              public void actionPerformed(ActionEvent event) {
